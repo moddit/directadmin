@@ -10,6 +10,7 @@
 
 namespace Omines\DirectAdmin\Objects;
 
+use GuzzleHttp\Psr7\Query;
 use Omines\DirectAdmin\Context\UserContext;
 use Omines\DirectAdmin\DirectAdminException;
 use Omines\DirectAdmin\Objects\Domains\Subdomain;
@@ -63,7 +64,7 @@ class Domain extends BaseObject
     public function __construct($name, UserContext $context, $config)
     {
         parent::__construct($name, $context);
-        $this->setConfig($context, is_array($config) ? $config : \GuzzleHttp\Psr7\parse_query($config));
+        $this->setConfig($context, is_array($config) ? $config : Query::parse($config));
     }
 
     /**
